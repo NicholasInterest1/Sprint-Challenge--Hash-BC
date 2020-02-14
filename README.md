@@ -36,14 +36,22 @@ Explain in detail the workings of a dynamic array:
 
     Typically resizing is expensive because you have to allocate a bigger array and copy over all of the elements from the array you have overgrow before we can finally append our item. O(n) when at capacity and appending worst-case usually O(1)
 
-Explain how blockchain networks remain in consensus:
-* What does a node do if it gets a message from another in the network with a new block?
+* Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
 
-    If it is a valid solution, the node will hash the previous block and add it to the new block, and add the rest of the properties, including a timestamp, index, and the list of pending transactions, which are now confirmed. It then shares the new block with the nodes in its network, which check the new block to make sure that it has an index one higher than the last block, a previous hash that matches the previous block, and a valid solution. If these checks pass, then the new block is added and spreads through the network, bearing in mind that consensus is determined by the longest valid chain.
+    Blockchains are chained by previous hash.
 
-* Why can't someone cheat by changing a transaction from an earlier block to give themselves coins?
+    A block should have:
+        * Index
+        * Timestamp
+        * List of current transactions
+        * The proof used to mine this block
+        * The hash of the previous block
 
-    Proof of work secures the chain by making it nearly computationally impossible to cheat, because the cheater would have to do a greater amount of work than everyone else. If these checks pass, then the new block is added and spreads through the network, bearing in mind that consensus is determined by the longest valid chain.This distribution means that the chain itself is nearly impossible to assault. We’ve learned that to change the chain itself, we need to redo the previous hash stored in all subsequent blocks. But as described above, it would take a vast amount of computing power to do so.
+* Explain how proof of work functions. How does it operate. How does this protect the chain from attack. What kind of attack is possible?
+
+    Proof of work is essentially the work done on sha256 we start with 0 and go up one number each time till we find the hash with three leading zeroes.
+
+    By chaining the blocks together by previous hash an attacker would need to change all the hashes in order to hack.
 
 ## Project Set Up
 
